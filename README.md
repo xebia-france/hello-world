@@ -1,6 +1,6 @@
 # hello-container
 
-> Sample application to play with containers!
+Sample application to play with containers!
 
 ## Build Setup
 
@@ -18,4 +18,19 @@ npm run build
 npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Running the server
+
+You can run the server by launching server.js
+
+```
+npm install --production
+node ./server.js
+```
+
+This application requires a redis server.
+You can pass the host running the redis server through the REDIS_HOST environment variable.
+
+```
+npm install --production
+REDIS_HOST=redis.example.net node ./server.js
+```
