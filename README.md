@@ -2,6 +2,18 @@
 
 Sample application to play with containers!
 
+## Disclaimer
+
+This is not a _real_ project. I use this application to illustrate some training or talks.
+
+## Structure
+
+```
+
+[ Frontend (web application)] --> [ Backend (nodeJs server)] --> [ Database (redis server)]
+
+```
+
 ## Build Setup
 
 ``` bash
