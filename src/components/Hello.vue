@@ -42,8 +42,11 @@
         this.$refs['snackbar'].open()
       },
       clearHello () {
-        return axios.delete('http://localhost:8081/hello')
-          .then(this.fetchHellos)
+        this.hello_count = 0
+        if (this.online) {
+          return axios.delete('http://localhost:8081/hello')
+            .then(this.fetchHellos)
+        }
       },
       fetchHellos () {
         const that = this
