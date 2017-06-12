@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <md-toolbar>
-      <h2 class="md-title">Greeting console</h2>
-    </md-toolbar>
     <router-view></router-view>
   </div>
 </template>
