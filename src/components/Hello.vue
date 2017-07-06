@@ -34,6 +34,11 @@
   import axios from 'axios'
   export default {
     name: 'hello',
+    computed: {
+      host () {
+        return window.location.hostname
+      }
+    },
     methods: {
       switchOnline (online) {
         if (online) {
@@ -44,20 +49,20 @@
       clearHello () {
         this.hello_count = 0
         if (this.online) {
-          return axios.delete('http://localhost:8081/hello')
+          return axios.delete(`http://${this.host}:8081/hello`)
             .then(this.fetchHellos)
         }
       },
       fetchHellos () {
         const that = this
-        return axios.get('http://localhost:8081/hello')
+        return axios.get(`http://${this.host}:8081/hello`)
           .then(resp => {
             that.hello_count = parseInt(resp.data.hello_count)
           })
       },
       addHello () {
         if (this.online) {
-          return axios.post('http://localhost:8081/hello')
+          return axios.post(`http://$[this.host}:8081/hello`)
             .then(this.fetchHellos)
         } else {
           this.hello_count += 1
