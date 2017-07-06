@@ -62,7 +62,7 @@
       },
       addHello () {
         if (this.online) {
-          return axios.post(`http://$[this.host}:8081/hello`)
+          return axios.post(`http://${this.host}:8081/hello`)
             .then(this.fetchHellos)
         } else {
           this.hello_count += 1
