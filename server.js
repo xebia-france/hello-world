@@ -1,4 +1,5 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 const redis = require('redis')
 
@@ -16,6 +17,7 @@ const allowCrossDomain = function (req, res, next) {
     next()
   }
 }
+app.use(morgan('combined'))
 app.use(allowCrossDomain)
 
 app.delete('/hello', function (req, res) {
