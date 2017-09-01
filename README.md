@@ -9,37 +9,39 @@ This is not a _real_ project. I use this application to illustrate some training
 ## Structure
 
 ```
+The application contains three parts: a frontend, a server and a redis database, interacting like this :
 
 [ Frontend (web application)] --> [ Backend (nodeJs server)] --> [ Database (redis server)]
 
+
+The frontend can run without server or database, in a mode called Offline mode.
+
 ```
 
-## Build Setup
+## Frontend build
 
 ``` bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
-
 # build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
+# You can now serve through a web server like nginx the content of the dist/ folder
 ```
 
-## Running the server
-
-You can run the server by launching server.js
+## Backend build
 
 ```
 npm install --production
+```
+
+You can then run the server by running:
+```
 node ./server.js
 ```
 
-This application requires a redis server.
+The backend requires a redis server.
 You can pass the host running the redis server through the REDIS_HOST environment variable.
 
 ```
