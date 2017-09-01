@@ -33,7 +33,8 @@ app.post('/hello', function (req, res) {
 app.get('/hello', function (req, res) {
   client.get('hellos', (err, value) => {
     if (err) throw (err)
-    res.end(JSON.stringify({hello_count: parseInt(value)}))
+    const count = parseInt(value) || 0
+    res.end(JSON.stringify({hello_count: count}))
   })
 })
 
