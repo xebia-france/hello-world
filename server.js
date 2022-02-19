@@ -34,11 +34,14 @@ app.get('/hello', function (req, res) {
   client.get('hellos', (err, value) => {
     if (err) throw (err)
     const count = parseInt(value) || 0
+    res.setHeader('Content-Type', 'application/json')
     res.end(JSON.stringify({hello_count: count}))
   })
 })
 
-const server = app.listen(8081, function () {
+const port = process.env['BACKEND_PORT'] || 8081
+
+const server = app.listen(port, function () {
 
   const host = server.address().address
   const port = server.address().port
