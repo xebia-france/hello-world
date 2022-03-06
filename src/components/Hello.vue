@@ -47,13 +47,13 @@
       },
       backendPort: {
         get () {
-          if (!this.$cookies.get('backend-port')) {
-            this.$cookies.set('backend-port', 8081, 20 * 365)
+          if (!window.localStorage.backendPort) {
+            window.localStorage.backendPort = 8081
           }
-          return this.$cookies.get('backend-port')
+          return window.localStorage.backendPort
         },
         set (value) {
-          this.$cookies.set('backend-port', value, 20 * 365)
+          window.localStorage.backendPort = value
         }
       }
     },
