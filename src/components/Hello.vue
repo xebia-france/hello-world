@@ -2,10 +2,17 @@
   <md-layout md-column>
     <md-toolbar>
       <h2 style="flex: 1" class="md-title">Greeting console</h2>
+
       <md-switch @change="switchOnline" v-model="online" id="my-test0"
                  name="my-test0"></md-switch>
       <span v-if="online">Online</span>
       <span v-else>Offline</span>
+
+      <span style="margin-left: 20px; width: 100px" v-if="online">
+        <label for="port" style="margin-right: 10px">Backend Port:</label>
+        <input id="port" type="number" min="1024" v-model="backendPort" style="width: 80px" />
+      </span>
+
     </md-toolbar>
     <div class="hello">
       <img class="cactus" :src="cactusList[hello_count % cactusList.length]">
@@ -37,6 +44,17 @@
     computed: {
       host () {
         return window.location.hostname
+      },
+      backendPort: {
+        get () {
+          if (!window.localStorage.backendPort) {
+            window.localStorage.backendPort = 8081
+          }
+          return window.localStorage.backendPort
+        },
+        set (value) {
+          window.localStorage.backendPort = value
+        }
       }
     },
     methods: {
@@ -49,20 +67,20 @@
       clearHello () {
         this.hello_count = 0
         if (this.online) {
-          return axios.delete(`http://${this.host}:8081/hello`)
+          return axios.delete(`http://${this.host}:${this.backendPort}/hello`)
             .then(this.fetchHellos)
         }
       },
       fetchHellos () {
         const that = this
-        return axios.get(`http://${this.host}:8081/hello`)
+        return axios.get(`http://${this.host}:${this.backendPort}/hello`)
           .then(resp => {
             that.hello_count = parseInt(resp.data.hello_count)
           })
       },
       addHello () {
         if (this.online) {
-          return axios.post(`http://${this.host}:8081/hello`)
+          return axios.post(`http://${this.host}:${this.backendPort}/hello`)
             .then(this.fetchHellos)
         } else {
           this.hello_count += 1
